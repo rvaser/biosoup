@@ -1,0 +1,22 @@
+dist: trusty
+
+language: cpp
+
+os:
+    - linux
+    - osx
+
+compiler:
+    - clang
+    - gcc
+
+script:
+    - gcc --version
+    - g++ --version
+    - clang --version
+    - clang++ --version
+
+notifications:
+    email:
+        on_success: change
+        on_failure: always
