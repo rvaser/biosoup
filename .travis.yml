@@ -2,21 +2,44 @@ dist: trusty
 
 language: cpp
 
-os:
-    - linux
-    - osx
+matrix:
+  include:
+    - name: "GCC 4.8 (Linux)"
+      os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.8
+            - cmake
+      env:
+        - SET_COMPILER="export CC=gcc-4.8 && export CXX=g++-4.8"
 
-compiler:
-    - clang
-    - gcc
+    - name: "Clang 3.5 (Linux)"
+      os: linux
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-3.5
+          packages:
+            - clang-3.5
+            - cmake
+      env:
+        - SET_COMPILER="export CC=clang-3.5 && export CXX=clang++-3.5"
+
+    - name: "Clang Xcode 6.4 (OSX)"
+      os: osx
+      osx_image: xcode6.4
+
+before_install:
+  - eval "${SET_COMPILER}"
 
 script:
-    - gcc --version
-    - g++ --version
-    - clang --version
-    - clang++ --version
+  - cmake --version
+  - $CC --version
+  - $CXX --version
 
 notifications:
-    email:
-        on_success: change
-        on_failure: always
+  email:
+    on_failure: always
