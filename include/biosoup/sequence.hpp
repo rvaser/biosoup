@@ -45,7 +45,7 @@ struct Sequence {
 
   ~Sequence() = default;
 
-  void ReverseAndComplement(void) {  // (optional) DNA
+  void ReverseAndComplement(void) {  // (optional) Watson-Crick base pairing
     for (auto& it : data) {
       switch (it) {
         case 'A': case 'a': it = 'T'; break;
@@ -71,7 +71,7 @@ struct Sequence {
 
   static std::atomic<std::uint64_t> num_objects;  // (optional) initialize to 0
 
-  std::uint64_t id;
+  std::uint64_t id;  // (optional) valid if num_objects is initialized
   std::string name;
   std::string data;
   std::string quality;  // (optional) Phred quality scores
