@@ -45,7 +45,7 @@ struct Sequence {
 
   ~Sequence() = default;
 
-  void ReverseAndComplement(void) {  // (optional) Watson-Crick base pairing
+  void ReverseAndComplement() {  // (optional) Watson-Crick base pairing
     for (auto& it : data) {
       switch (it) {
         case 'A': case 'a': it = 'T'; break;
