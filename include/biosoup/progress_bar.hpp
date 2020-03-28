@@ -7,8 +7,6 @@
 #include <cstdint>
 #include <string>
 
-#include <iostream>
-
 namespace biosoup {
 
 class ProgressBar {
