@@ -40,6 +40,19 @@ class Timer {
     return 0;
   }
 
+  double Lap() const {
+    if (checkpoint_.time_since_epoch().count()) {  // Start() was called
+      return std::chrono::duration_cast<std::chrono::duration<double>>(
+          std::chrono::steady_clock::now() - checkpoint_).count();
+    }
+    return 0;
+  }
+
+  void Reset() {
+    checkpoint_ = {};
+    elapsed_time_ = 0;
+  }
+
  private:
   std::chrono::time_point<std::chrono::steady_clock> checkpoint_;
   double elapsed_time_;
