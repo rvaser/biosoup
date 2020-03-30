@@ -6,7 +6,7 @@ Biosoup is a c++ collection of header only data structures used for storage and 
 
 ## Dependencies
 
-1. gcc 4.8+ or clang 3.4+
+1. gcc 4.8+ or clang 3.5+
 2. (optional) cmake 3.2+
 
 ## Acknowledgement

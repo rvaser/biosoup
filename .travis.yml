@@ -4,7 +4,7 @@ language: cpp
 
 matrix:
   include:
-    - name: "GCC 4.8 (Linux)"  # GCC 4.8.5 & Cmake 3.9.2
+    - name: "GCC 4.8 (Linux)"  # GCC 4.8.5 & CMake 3.9.2
       os: linux
       addons:
         apt:
@@ -12,11 +12,10 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-4.8
-            - cmake
       env:
         - SET_COMPILER="export CC=gcc-4.8 && export CXX=g++-4.8"
 
-    - name: "Clang 3.5 (Linux)"  # clang 3.5.0 & cmake 3.9.2
+    - name: "Clang 3.5 (Linux)"  # Clang 3.5.0 & CMake 3.9.2
       os: linux
       addons:
         apt:
@@ -24,32 +23,19 @@ matrix:
             - llvm-toolchain-trusty-3.5
           packages:
             - clang-3.5
-            - cmake
       env:
         - SET_COMPILER="export CC=clang-3.5 && export CXX=clang++-3.5"
 
-    - name: "Clang Xcode 6.4 (OSX)"  # clang 3.6.0 & cmake 3.2.2
+    - name: "Clang Xcode 6.4 (OSX)"  # Clang 3.6.0 & CMake 3.2.2
       os: osx
       osx_image: xcode6.4
 
 before_install:
-  - if [ $TRAVIS_OS_NAME == "linux" ]; then
-      wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh --output-document miniconda.sh;
-    else
-      wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh --output-document miniconda.sh;
-    fi
-  - bash miniconda.sh -b -p $HOME/miniconda  # -b = batch, -p = prefix
-  - source "$HOME/miniconda/etc/profile.d/conda.sh"
-  - hash -r  # -r = forget all remembered locations
-  - conda config --set always_yes yes
-  - conda update --quiet conda
-  - conda create --quiet --name CI --channel conda-forge gtest
-  - conda activate CI
   - eval "${SET_COMPILER}"
 
 script:
   - mkdir build && cd build && cmake -Dbiosoup_build_tests=ON -DCMAKE_BUILD_TYPE=Release .. && make
-  - ./biosoup_test
+  - ./bin/biosoup_test
 
 notifications:
   email:
