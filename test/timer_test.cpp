@@ -37,7 +37,7 @@ TEST(BiosoupTimerTest, Stop) {
   t.Start();
   std::this_thread::sleep_for(std::chrono::milliseconds(256));
   EXPECT_TRUE(ExpectWithinInclusive(0.256, 0.384, t.Stop()));
-  EXPECT_TRUE(ExpectWithinInclusive(0.512, 0.640, t.elapsed_time()));
+  EXPECT_TRUE(ExpectWithinInclusive(0.512, 0.768, t.elapsed_time()));
 }
 
 TEST(BiosoupTimerTest, Lap) {
@@ -62,6 +62,8 @@ TEST(BiosoupTimerTest, Reset) {
   std::this_thread::sleep_for(std::chrono::milliseconds(256));
   t.Stop();
   EXPECT_TRUE(ExpectWithinInclusive(0.256, 0.384, t.elapsed_time()));
+  t.Reset();
+  EXPECT_EQ(0, t.elapsed_time());
 }
 
 }  // namespace
