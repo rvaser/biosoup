@@ -30,9 +30,9 @@ struct Sequence {
       const std::string& data,
       const std::string& quality)
       : Sequence(
-            name.c_str(), name.size(),
-            data.c_str(), data.size(),
-            quality.c_str(), quality.size()) {}
+          name.c_str(), name.size(),
+          data.c_str(), data.size(),
+          quality.c_str(), quality.size()) {}
 
   Sequence(
       const char* name, std::uint32_t name_length,
