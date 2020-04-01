@@ -6,7 +6,8 @@
 
 #include "gtest/gtest.h"
 
-namespace {
+namespace biosoup {
+namespace test {
 
 bool ExpectWithinInclusive(double lower, double upper, double value) {
   return lower <= value && value <= upper;
@@ -66,4 +67,5 @@ TEST(BiosoupTimerTest, Reset) {
   EXPECT_EQ(0, t.elapsed_time());
 }
 
-}  // namespace
+}  // namespace test
+}  // namespace biosoup

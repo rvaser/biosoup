@@ -2,14 +2,13 @@
 
 #include "biosoup/progress_bar.hpp"
 
-#include <iostream>
-
 #include "gtest/gtest.h"
 
-namespace {
+namespace biosoup {
+namespace test {
 
 TEST(BiosoupProgressBarTest, Operator) {
-  biosoup::ProgressBar b{8, 8};
+  ProgressBar b{8, 8};
   EXPECT_EQ(b(), "#.......");
   EXPECT_EQ(b(), "##......");
   EXPECT_EQ(b(), "###.....");
@@ -60,4 +59,5 @@ TEST(BiosoupProgressBarTest, Operator) {
   EXPECT_EQ(b(), ".");
 }
 
-}  // namespace
+}  // namespace test
+}  // namespace biosoup
