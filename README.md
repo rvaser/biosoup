@@ -16,7 +16,7 @@ target_link_libraries(<your_exe> biosoup)
 
 If you are not using CMake, include the appropriate header file directly to you project.
 
-### Dependencies
+#### Dependencies
 
 - gcc 4.8+ or clang 3.5+
 - (optional) cmake 3.9+
@@ -32,7 +32,7 @@ cmake -Dbiosoup_build_tests=ON -DCMAKE_BUILD_TYPE=Release .. && make
 ./bin/biosoup_test
 ```
 
-### Dependencies
+#### Dependencies
 - gtest
 
 ## Acknowledgement
