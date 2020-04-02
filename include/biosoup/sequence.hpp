@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <atomic>
+#include <cctype>
 #include <cstdint>
 #include <string>
 
@@ -53,11 +54,11 @@ struct Sequence {
 
   void ReverseAndComplement() {  // (optional) Watson-Crick base pairing
     for (auto& it : data) {
-      switch (it) {
-        case 'A': case 'a': it = 'T'; break;
-        case 'C': case 'c': it = 'G'; break;
-        case 'G': case 'g': it = 'C'; break;
-        case 'T': case 't': case 'U': it = 'A'; break;
+      switch (static_cast<char>(std::toupper(static_cast<unsigned char>(it)))) {
+        case 'A': it = 'T'; break;
+        case 'C': it = 'G'; break;
+        case 'G': it = 'C'; break;
+        case 'T': case 'U': it = 'A'; break;
         case 'R': it = 'Y'; break;  // A || G
         case 'Y': it = 'R'; break;  // C || T (U)
         case 'K': it = 'M'; break;  // G || T (U)
@@ -68,7 +69,7 @@ struct Sequence {
         case 'D': it = 'H'; break;  // !C
         case 'H': it = 'D'; break;  // !G
         case 'V': it = 'B'; break;  // !T (!U)
-        default: break;  // N
+        default: break;  // N || -
       }
     }
     std::reverse(data.begin(), data.end());
