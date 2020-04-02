@@ -14,7 +14,7 @@ endif ()
 target_link_libraries(<your_exe> biosoup)
 ```
 
-If you are not using CMake, include the appropriate header file directly to you project.
+If you are not using CMake, include the appropriate header file directly to your project.
 
 #### Dependencies
 
