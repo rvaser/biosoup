@@ -26,16 +26,20 @@ class ProgressBar {
 
   ~ProgressBar() = default;
 
-  std::string operator()() {
+  std::string operator()() {  // return an empty string if bar is unchanged
     ++event_id_;
     if (event_id_ >= num_events_) {
       while (bar_ptr_ < bar_.size()) {
         bar_[bar_ptr_++] = '#';
       }
+      return bar_;
     } else if (event_id_ >= (bar_ptr_ + 1) * events_per_tick_) {
       bar_[bar_ptr_++] = '#';
+      return bar_;
+    } else if (event_id_ == 1) {  // possible empty bar
+      return bar_;
     }
-    return bar_;
+    return std::string{};
   }
 
  private:
