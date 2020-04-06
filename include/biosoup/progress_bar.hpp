@@ -29,7 +29,7 @@ class ProgressBar {
   ~ProgressBar() = default;
 
   std::uint32_t event_counter() const {
-    return static_cast<std::uint32_t>(event_counter_);
+    return event_counter_;
   }
 
   bool operator++() {  // true if a tick is added
@@ -60,7 +60,7 @@ class ProgressBar {
   std::string bar_;
   std::uint32_t bar_ptr_;
   std::uint32_t num_events_;
-  double event_counter_;
+  std::uint32_t event_counter_;
   double events_per_tick_;
 };
 

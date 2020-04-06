@@ -12,9 +12,9 @@ namespace test {
 TEST(BiosoupSequenceTest, ReverseAndComplement) {
   Sequence s{"Test", "ACGTURYKMSWBDHVN", "0123456789:;<=>?"};
   s.ReverseAndComplement();
-  EXPECT_EQ(s.id, 0);
-  EXPECT_EQ(s.data, "NBDHVWSKMRYAACGT");
-  EXPECT_EQ(s.quality, "?>=<;:9876543210");
+  EXPECT_EQ(0, s.id);
+  EXPECT_EQ("NBDHVWSKMRYAACGT", s.data);
+  EXPECT_EQ("?>=<;:9876543210", s.quality);
 }
 
 }  // namespace test
