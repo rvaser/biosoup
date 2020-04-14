@@ -36,7 +36,7 @@ struct Overlap {
       : Overlap(
           lhs_id, lhs_begin, lhs_end,
           rhs_id, rhs_begin, rhs_end,
-          score
+          score,
           alignment.c_str(), alignment.size(),
           strand) {}
 

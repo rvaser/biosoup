@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
 
-project(biosoup VERSION 0.5.0
+project(biosoup VERSION 0.5.1
                 LANGUAGES CXX
                 DESCRIPTION "Biosoup is a c++ collection of header only data structures used for storage and logging in bioinformatics tools.")
 
@@ -22,6 +22,7 @@ option(biosoup_build_tests "Build biosoup unit tests" OFF)
 if (biosoup_build_tests)
   find_package(GTest REQUIRED)
   add_executable(${PROJECT_NAME}_test
+    test/overlap_test.cpp
     test/progress_bar_test.cpp
     test/sequence_test.cpp
     test/timer_test.cpp)
