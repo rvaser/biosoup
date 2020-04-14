@@ -76,9 +76,9 @@ struct Sequence {
     std::reverse(quality.begin(), quality.end());
   }
 
-  static std::atomic<std::uint64_t> num_objects;  // (optional) initialize to 0
+  static std::atomic<std::uint32_t> num_objects;
 
-  std::uint64_t id;  // (optional) valid if num_objects is initialized
+  std::uint32_t id;  // (optional) initialize num_objects to 0
   std::string name;
   std::string data;
   std::string quality;  // (optional) Phred quality scores

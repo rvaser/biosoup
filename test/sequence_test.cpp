@@ -4,7 +4,7 @@
 
 #include "gtest/gtest.h"
 
-std::atomic<std::uint64_t> biosoup::Sequence::num_objects{0};
+std::atomic<std::uint32_t> biosoup::Sequence::num_objects{0};
 
 namespace biosoup {
 namespace test {
