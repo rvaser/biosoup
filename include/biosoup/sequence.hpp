@@ -19,11 +19,11 @@ struct Sequence {
       : Sequence(name.c_str(), name.size(), data.c_str(), data.size()) {}
 
   Sequence(
-      const char* name, std::uint32_t name_length,
-      const char* data, std::uint32_t data_length)
+      const char* name, std::uint32_t name_len,
+      const char* data, std::uint32_t data_len)
       : id(num_objects++),
-        name(name, name_length),
-        data(data, data_length),
+        name(name, name_len),
+        data(data, data_len),
         quality() {}
 
   Sequence(
@@ -36,13 +36,13 @@ struct Sequence {
           quality.c_str(), quality.size()) {}
 
   Sequence(
-      const char* name, std::uint32_t name_length,
-      const char* data, std::uint32_t data_length,
-      const char* quality, std::uint32_t quality_length)
+      const char* name, std::uint32_t name_len,
+      const char* data, std::uint32_t data_len,
+      const char* quality, std::uint32_t quality_len)
       : id(num_objects++),
-        name(name, name_length),
-        data(data, data_length),
-        quality(quality, quality_length) {}
+        name(name, name_len),
+        data(data, data_len),
+        quality(quality, quality_len) {}
 
   Sequence(const Sequence&) = default;
   Sequence& operator=(const Sequence&) = default;
