@@ -14,7 +14,7 @@ bool ExpectWithinInclusive(double lower, double upper, double value) {
 }
 
 TEST(BiosoupTimerTest, Start) {
-  biosoup::Timer t{};
+  Timer t{};
   t.Start();
   std::this_thread::sleep_for(std::chrono::milliseconds(256));
   EXPECT_TRUE(ExpectWithinInclusive(0.256, 0.384, t.Stop()));
@@ -25,7 +25,7 @@ TEST(BiosoupTimerTest, Start) {
 }
 
 TEST(BiosoupTimerTest, Stop) {
-  biosoup::Timer t{};
+  Timer t{};
   EXPECT_TRUE(ExpectWithinInclusive(0, 0.001, t.Stop()));
   EXPECT_EQ(0, t.elapsed_time());
   t.Start();
@@ -42,7 +42,7 @@ TEST(BiosoupTimerTest, Stop) {
 }
 
 TEST(BiosoupTimerTest, Lap) {
-  biosoup::Timer t{};
+  Timer t{};
   t.Start();
   EXPECT_TRUE(ExpectWithinInclusive(0, 0.001, t.Lap()));
   std::this_thread::sleep_for(std::chrono::milliseconds(256));
@@ -53,7 +53,7 @@ TEST(BiosoupTimerTest, Lap) {
 }
 
 TEST(BiosoupTimerTest, Reset) {
-  biosoup::Timer t{};
+  Timer t{};
   t.Start();
   std::this_thread::sleep_for(std::chrono::milliseconds(256));
   t.Reset();
