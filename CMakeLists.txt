@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
 
-project(biosoup VERSION 0.7.0
+project(biosoup VERSION 0.7.1
                 LANGUAGES CXX
                 DESCRIPTION "Biosoup is a c++ collection of header only data structures used for storage and logging in bioinformatics tools.")
 

@@ -92,10 +92,9 @@ class NucleicAcid {
   ~NucleicAcid() = default;
 
   std::string Inflate(std::uint32_t pos = 0, std::uint32_t len = -1) const {
-    if (pos > inflated_len) {
+    if (pos >= inflated_len) {
       return std::string{};
     }
-
     len = std::min(len, inflated_len - pos);
 
     std::string dst{};
