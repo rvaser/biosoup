@@ -99,7 +99,7 @@ class NucleicAcid {
 
     std::string dst{};
     dst.reserve(len);
-    for (std::uint32_t block = pos >> 6; len; ++pos, --len) {
+    for (std::uint32_t block = pos >> 5; len; ++pos, --len) {
       dst += kNucleotideDecoder[(deflated_data[block] >> (pos << 1 & 63)) & 3];
       if (((pos + 1) & 31) == 0) {
         ++block;

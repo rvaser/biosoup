@@ -22,13 +22,14 @@ TEST(BiosoupNucleicAcidTest, NucleotideError) {
 }
 
 TEST(BiosoupNucleicAcidTest, Inflate) {
-  NucleicAcid s{"test", "ACGTRYKMSWBDHVN-nvhdbwsmkyrtgca"};
-  EXPECT_EQ("ACGTATGCCACATGAAAGTACACCGTATGCA", s.Inflate());
-  EXPECT_EQ("TATGCCACATGAAAGTACACCGTATGCA", s.Inflate(3, 42));
-  EXPECT_EQ("TGAAAGT", s.Inflate(12, 7));
-  EXPECT_EQ("", s.Inflate(42, 42));
-  EXPECT_EQ("A", s.Inflate(30, 1));
-  EXPECT_EQ("", s.Inflate(31, 1));
+  NucleicAcid s{"test", "AaAaCcCcGgGgTtTt------ACGTRYKMSWBDHVN-nvhdbwsmkyrtgca------tTtTgGgGcCcCaAaA"};  // NOLINT
+  EXPECT_EQ("AAAACCCCGGGGTTTTAAAAAAACGTATGCCACATGAAAGTACACCGTATGCAAAAAAATTTTGGGGCCCCAAAA", s.Inflate());  // NOLINT
+  EXPECT_EQ("TATGCCACATGAAAGTACACCGTAT", s.Inflate(25, 25));
+  EXPECT_EQ("TGAAAGT", s.Inflate(34, 7));
+  EXPECT_EQ("", s.Inflate(75, 42));
+  EXPECT_EQ("C", s.Inflate(29, 1));
+  EXPECT_EQ("G", s.Inflate(64, 1));
+  EXPECT_EQ("CCAAAA", s.Inflate(69));
 }
 
 }  // namespace test
