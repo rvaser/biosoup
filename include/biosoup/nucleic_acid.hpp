@@ -53,14 +53,14 @@ class NucleicAcid {
         inflated_len(data_len) {
     deflated_data.reserve(inflated_len / 32. + .999);
     std::uint64_t block = 0;
-    for (std::uint32_t pos = 0; pos < inflated_len; ++pos) {
-      std::uint64_t c = kNucleotideCoder[static_cast<std::uint8_t>(data[pos])];
+    for (std::uint32_t i = 0; i < inflated_len; ++i) {
+      std::uint64_t c = kNucleotideCoder[static_cast<std::uint8_t>(data[i])];
       if (c == 255ULL) {
         throw std::invalid_argument(
             "[biosoup::NucleicAcid::NucleicAcid] error: not a nucleotide");
       }
-      block |= c << (pos << 1 & 63);
-      if (((pos + 1) & 31) == 0 || pos == data_len - 1) {
+      block |= c << (i << 1 & 63);
+      if (((i + 1) & 31) == 0 || i == data_len - 1) {
         deflated_data.emplace_back(block);
         block = 0;
       }
@@ -91,21 +91,41 @@ class NucleicAcid {
 
   ~NucleicAcid() = default;
 
-  std::string Inflate(std::uint32_t pos = 0, std::uint32_t len = -1) const {
-    if (pos >= inflated_len) {
+  std::string Inflate(std::uint32_t i = 0, std::uint32_t len = -1) const {
+    if (i >= inflated_len) {
       return std::string{};
     }
-    len = std::min(len, inflated_len - pos);
+    len = std::min(len, inflated_len - i);
 
     std::string dst{};
     dst.reserve(len);
-    for (std::uint32_t block = pos >> 5; len; ++pos, --len) {
-      dst += kNucleotideDecoder[(deflated_data[block] >> (pos << 1 & 63)) & 3];
-      if (((pos + 1) & 31) == 0) {
-        ++block;
+    for (std::uint32_t b = i >> 5; len; ++i, --len) {
+      dst += kNucleotideDecoder[(deflated_data[b] >> (i << 1 & 63)) & 3];
+      if (((i + 1) & 31) == 0) {
+        ++b;
       }
     }
     return dst;
+  }
+
+  void ReverseAndComplement() {   // Watson-Crick base pairing
+    std::vector<std::uint64_t> tmp;
+    tmp.reserve(deflated_data.size());
+
+    std::uint64_t block = 0;
+    for (std::uint32_t i = inflated_len, j = 0, b = (i - 1) >> 5; i; --i, ++j) {
+      std::uint64_t c = (deflated_data[b] >> ((i - 1) << 1 & 63)) & 3;
+      block |= (c ^ 3) << (j << 1 & 63);
+      if (((i - 1) & 31) == 0) {
+        --b;
+      }
+      if (((j + 1) & 31) == 0 || j == inflated_len - 1) {
+        tmp.emplace_back(block);
+        block = 0;
+      }
+    }
+
+    deflated_data.swap(tmp);
   }
 
   static std::atomic<std::uint32_t> num_objects;

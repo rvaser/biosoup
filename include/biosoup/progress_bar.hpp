@@ -32,6 +32,10 @@ class ProgressBar {
     return event_counter_;
   }
 
+  std::uint32_t num_events() const {
+    return num_events_;
+  }
+
   bool operator++() {  // true if a tick is added
     ++event_counter_;
     if (event_counter_ > num_events_) {

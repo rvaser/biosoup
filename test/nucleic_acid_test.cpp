@@ -32,5 +32,14 @@ TEST(BiosoupNucleicAcidTest, Inflate) {
   EXPECT_EQ("CCAAAA", s.Inflate(69));
 }
 
+TEST(BiosoupNucleicAcidTest, ReverseAndComplement) {
+  NucleicAcid s{"test", "ACGTACTGAGCTAGTCATCGATGCCAGTCATGCGATCGTACTAGCTGAGACTGATCGCATGCTAGTACGTCA"};  // NOLINT
+  NucleicAcid c{s};
+  c.ReverseAndComplement();
+  EXPECT_EQ("TGACGTACTAGCATGCGATCAGTCTCAGCTAGTACGATCGCATGACTGGCATCGATGACTAGCTCAGTACGT", c.Inflate());  // NOLINT
+  c.ReverseAndComplement();
+  EXPECT_EQ(c.deflated_data, s.deflated_data);
+}
+
 }  // namespace test
 }  // namespace biosoup
