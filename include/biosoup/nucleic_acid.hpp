@@ -37,6 +37,8 @@ constexpr static char kNucleotideDecoder[] = {
 
 class NucleicAcid {
  public:
+  NucleicAcid() = default;
+
   NucleicAcid(
       const std::string& name,
       const std::string& data)
@@ -99,11 +101,8 @@ class NucleicAcid {
 
     std::string dst{};
     dst.reserve(len);
-    for (std::uint32_t b = i >> 5; len; ++i, --len) {
-      dst += kNucleotideDecoder[(deflated_data[b] >> (i << 1 & 63)) & 3];
-      if (((i + 1) & 31) == 0) {
-        ++b;
-      }
+    for (; len; ++i, --len) {
+      dst += kNucleotideDecoder[(deflated_data[i >> 5] >> (i << 1 & 63)) & 3];
     }
     return dst;
   }
@@ -113,12 +112,9 @@ class NucleicAcid {
     tmp.reserve(deflated_data.size());
 
     std::uint64_t block = 0;
-    for (std::uint32_t i = inflated_len, j = 0, b = (i - 1) >> 5; i; --i, ++j) {
-      std::uint64_t c = (deflated_data[b] >> ((i - 1) << 1 & 63)) & 3;
+    for (std::uint32_t i = inflated_len, j = 0; i; --i, ++j) {
+      std::uint64_t c = (deflated_data[(i - 1) >> 5] >> ((i - 1) << 1 & 63)) & 3;  // NOLINT
       block |= (c ^ 3) << (j << 1 & 63);
-      if (((i - 1) & 31) == 0) {
-        --b;
-      }
       if (((j + 1) & 31) == 0 || j == inflated_len - 1) {
         tmp.emplace_back(block);
         block = 0;
