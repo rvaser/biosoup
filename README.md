@@ -8,9 +8,7 @@ Biosoup is a c++ collection of header only data structures used for storage and 
 
 To build biosoup run the following commands:
 ```bash
-git clone https://github.com/rvaser/biosoup
-mkdir biosoup/build
-cd biosoup/build
+git clone https://github.com/rvaser/biosoup && cd biosoup && mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release .. && make
 ```
 which will create install targets and unit tests. Running `make install` will create a package on your system that can be searched and linked with:
