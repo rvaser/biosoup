@@ -6,34 +6,37 @@ Biosoup is a c++ collection of header only data structures used for storage and 
 
 ## Usage
 
-If you would like to add biosoup to your project via CMake, add the following:
+To build biosoup run the following commands:
+```bash
+git clone https://github.com/rvaser/biosoup
+mkdir biosoup/build
+cd biosoup/build
+cmake -DCMAKE_BUILD_TYPE=Release .. && make
+```
+which will create install targets and unit tests. Running `make install` will create a package on your system that can be searched and linked with:
+```cmake
+find_package(biosoup)
+target_link_libraries(<target> biosoup::biosoup)
+```
+On the other hand, you can include biosoup as a submodule and add it to you project with the following:
 ```cmake
 if (NOT TARGET biosoup)
   add_subdirectory(<path_to_submodules>/biosoup EXCLUDE_FROM_ALL)
 endif ()
-target_link_libraries(<your_exe> biosoup)
+target_link_libraries(<target> biosoup::biosoup)
 ```
 
 If you are not using CMake, include the appropriate header file directly to your project.
 
-#### Dependencies
+#### Build options
 
-- gcc 4.8+ or clang 3.5+
-- (optional) cmake 3.9+
-
-## Unit tests
-
-To build and run biosoup unit tests run the following commands:
-
-```bash
-git clone https://github.com/rvaser/biosoup.git biosoup
-cd biosoup && mkdir build && cd build
-cmake -Dbiosoup_build_tests=ON -DCMAKE_BUILD_TYPE=Release .. && make
-./bin/biosoup_test
-```
+- `biosoup_install`: generate install target
+- `biosoup_build_tests`: build unit tests
 
 #### Dependencies
-- gtest
+
+- gcc 4.8+ | clang 3.5+
+- (optional) cmake 3.11+
 
 ## Acknowledgement
 
