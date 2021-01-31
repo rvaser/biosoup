@@ -36,6 +36,9 @@ If you are not using CMake, include the appropriate header file directly to your
 - gcc 4.8+ | clang 3.5+
 - (optional) cmake 3.11+
 
+###### Hidden
+- (biosoup_test) gtest 1.10.0
+
 ## Acknowledgement
 
 This work has been supported in part by the Croatian Science Foundation under the project Single genome and metagenome assembly (IP-2018-01-5886).
