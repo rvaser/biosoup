@@ -13,8 +13,8 @@ struct Overlap {
   Overlap() = default;
 
   Overlap(
-      std::uint64_t lhs_id, std::uint32_t lhs_begin, std::uint32_t lhs_end,
-      std::uint64_t rhs_id, std::uint32_t rhs_begin, std::uint32_t rhs_end,
+      std::uint32_t lhs_id, std::uint32_t lhs_begin, std::uint32_t lhs_end,
+      std::uint32_t rhs_id, std::uint32_t rhs_begin, std::uint32_t rhs_end,
       std::uint32_t score,
       bool strand = true)
       : lhs_id(lhs_id),
@@ -28,8 +28,8 @@ struct Overlap {
         alignment() {}
 
   Overlap(
-      std::uint64_t lhs_id, std::uint32_t lhs_begin, std::uint32_t lhs_end,
-      std::uint64_t rhs_id, std::uint32_t rhs_begin, std::uint32_t rhs_end,
+      std::uint32_t lhs_id, std::uint32_t lhs_begin, std::uint32_t lhs_end,
+      std::uint32_t rhs_id, std::uint32_t rhs_begin, std::uint32_t rhs_end,
       std::uint32_t score,
       const std::string& alignment,
       bool strand = true)
@@ -41,8 +41,8 @@ struct Overlap {
           strand) {}
 
   Overlap(
-      std::uint64_t lhs_id, std::uint32_t lhs_begin, std::uint32_t lhs_end,
-      std::uint64_t rhs_id, std::uint32_t rhs_begin, std::uint32_t rhs_end,
+      std::uint32_t lhs_id, std::uint32_t lhs_begin, std::uint32_t lhs_end,
+      std::uint32_t rhs_id, std::uint32_t rhs_begin, std::uint32_t rhs_end,
       std::uint32_t score,
       const char* alignment, std::uint32_t alignment_len,
       bool strand = true)
