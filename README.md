@@ -16,7 +16,7 @@ which will create install targets and unit tests. Running `make install` will cr
 find_package(biosoup)
 target_link_libraries(<target> biosoup::biosoup)
 ```
-On the other hand, you can include biosoup as a submodule and add it to you project with the following:
+On the other hand, you can include biosoup as a submodule and add it to your project with the following:
 ```cmake
 if (NOT TARGET biosoup)
   add_subdirectory(<path_to_submodules>/biosoup EXCLUDE_FROM_ALL)
