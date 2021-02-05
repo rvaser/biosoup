@@ -37,7 +37,7 @@ If you are not using CMake, include the appropriate header file directly to your
 - (optional) cmake 3.11+
 
 ###### Hidden
-- (biosoup_test) googletest 1.10.0
+- (biosoup_test) google/googletest 1.10.0
 
 ## Acknowledgement
 
