@@ -1,6 +1,6 @@
 # Biosoup
 
-[![Build status for gcc/clang](https://travis-ci.com/rvaser/biosoup.svg?branch=master)](https://travis-ci.com/rvaser/biosoup)
+![Build status for gcc/clang](https://github.com/rvaser/biosoup/actions/workflows/biosoup.yml/badge.svg)
 
 Biosoup is a c++ collection of header only data structures used for storage and logging in bioinformatics tools.
 
